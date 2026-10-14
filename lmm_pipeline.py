@@ -205,7 +205,7 @@ def run(only, inspect, cfg_path) -> int:
             print(f"[FAIL] {scfg['label']}: {e}", file=sys.stderr)
 
     if frames:
-                fresh = pd.concat(frames)
+        fresh = pd.concat(frames)
         # a rerun on the same day replaces that exchange's rows for the day (so renamed firms don't linger)
         hist = hist[~(hist["as_of"].eq(as_of) & hist["exchange"].isin(fresh["exchange"].unique()))]
         hist = pd.concat([hist, fresh]).drop_duplicates(subset=["as_of", "exchange", "symbol", "lmm"], keep="last")
