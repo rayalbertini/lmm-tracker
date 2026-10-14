@@ -205,7 +205,10 @@ def run(only, inspect, cfg_path) -> int:
             print(f"[FAIL] {scfg['label']}: {e}", file=sys.stderr)
 
     if frames:
-        hist = pd.concat([hist, *frames]).drop_duplicates(subset=["as_of", "exchange", "symbol", "lmm"], keep="last")
+                fresh = pd.concat(frames)
+        # a rerun on the same day replaces that exchange's rows for the day (so renamed firms don't linger)
+        hist = hist[~(hist["as_of"].eq(as_of) & hist["exchange"].isin(fresh["exchange"].unique()))]
+        hist = pd.concat([hist, fresh]).drop_duplicates(subset=["as_of", "exchange", "symbol", "lmm"], keep="last")
         hist.sort_values(["as_of", "exchange", "symbol"]).to_csv(HISTORY, index=False)
 
     # latest = newest snapshot per exchange, so a failed source falls back to its last good day
