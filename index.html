@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lead market maker coverage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#edf0f2; --panel:#f8f9fa; --ink:#14212b; --muted:#5b6b77; --line:#d3dade;
+  --accent:#0f6b6b; --accent-ink:#ffffff; --heat0:#e3e8eb; --heat-rgb:15,107,107;
+  --warn:#a8650f; --bad:#b3261e; --good:#1f7a4d;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f161b; --panel:#162027; --ink:#e4ebef; --muted:#93a3ae; --line:#26343d;
+  --accent:#4fc1b8; --accent-ink:#0a1417; --heat0:#1d2a32; --heat-rgb:79,193,184;
+  --warn:#e0a458; --bad:#ef8a83; --good:#6fcf9f;}}
+:root[data-theme="dark"]{
+  --bg:#0f161b; --panel:#162027; --ink:#e4ebef; --muted:#93a3ae; --line:#26343d;
+  --accent:#4fc1b8; --accent-ink:#0a1417; --heat0:#1d2a32; --heat-rgb:79,193,184;
+  --warn:#e0a458; --bad:#ef8a83; --good:#6fcf9f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 var(--sans)}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 24px 64px}
+header{display:flex;flex-wrap:wrap;gap:16px;align-items:end;justify-content:space-between;margin-bottom:20px}
+h1{font:600 28px/1.1 var(--cond);margin:0;letter-spacing:.2px}
+.sub{color:var(--muted);margin-top:6px}
+.health{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--good)}
+.pill.stale .dot{background:var(--bad)}
+.pill small{color:var(--muted)}
+.banner{background:var(--panel);border:1px solid var(--warn);color:var(--ink);padding:10px 14px;border-radius:6px;margin-bottom:16px;font-size:14px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:18px}
+h2{font:600 17px/1.2 var(--cond);margin:0 0 4px}
+.hint{color:var(--muted);font-size:13px;margin:0 0 14px}
+.matrix-scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+.matrix th,.matrix td{padding:0;border:2px solid var(--panel)}
+.matrix thead th{font:500 12.5px var(--sans);color:var(--muted);text-align:center;padding:4px 6px 8px;white-space:nowrap}
+.matrix tbody th{font:500 14px var(--sans);text-align:left;padding:0 14px 0 0;white-space:nowrap;position:sticky;left:0;background:var(--panel)}
+.matrix th.tot,.matrix td.tot{color:var(--muted);font-variant-numeric:tabular-nums;text-align:right;padding-left:12px}
+.cell{display:block;width:100%;min-width:74px;height:40px;border:0;border-radius:3px;font:500 14px var(--sans);font-variant-numeric:tabular-nums;color:var(--ink);cursor:pointer;background:var(--heat0)}
+.cell.zero{color:transparent;cursor:default}
+.cell.on{outline:2px solid var(--ink);outline-offset:1px}
+.cell:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:5px 13px;font:inherit;font-size:13.5px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+input[type=search],select{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:7px 10px;font:inherit;font-size:14px}
+input[type=search]{min-width:220px}
+.spacer{flex:1}
+.link{background:none;border:0;color:var(--accent);cursor:pointer;font:inherit;font-size:13.5px;padding:4px}
+.grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:18px}
+@media(max-width:960px){.grid{grid-template-columns:1fr}}
+.data th{font:500 12.5px var(--sans);color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);cursor:pointer;user-select:none;white-space:nowrap}
+.data td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.data td.sym{font-weight:600;font-variant-numeric:tabular-nums}
+.scroll{max-height:520px;overflow:auto}
+.tag{display:inline-block;font-size:12.5px;color:var(--muted)}
+.chg{padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.chg:last-child{border:0}
+.chg b{font-weight:600}
+.kind{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:3px;margin-right:6px}
+.kind.added{background:rgba(31,122,77,.16);color:var(--good)}
+.kind.removed{background:rgba(179,38,30,.14);color:var(--bad)}
+.kind.changed{background:rgba(168,101,15,.16);color:var(--warn)}
+.empty{color:var(--muted);padding:18px 0}
+.count{color:var(--muted);font-size:13px}
+.theme{margin-left:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Lead market maker coverage</h1>
+      <div class="sub" id="asof">Loading…</div>
+    </div>
+    <div class="health" id="health" aria-label="Source status"></div>
+  </header>
+
+  <div id="banner"></div>
+
+  <section aria-labelledby="mx">
+    <h2 id="mx">Who covers what</h2>
+    <p class="hint">Funds covered by each lead market maker, split by asset class. Select a cell to filter the list below.</p>
+    <div class="matrix-scroll"><table class="matrix" id="matrix"></table></div>
+  </section>
+
+  <div class="grid">
+    <section aria-labelledby="ls">
+      <h2 id="ls">Fund assignments</h2>
+      <div class="controls">
+        <span id="exChips" role="group" aria-label="Exchange"></span>
+        <select id="acSel" aria-label="Asset class"></select>
+        <select id="lmmSel" aria-label="Lead market maker"></select>
+        <input type="search" id="q" placeholder="Search symbol or fund name" aria-label="Search">
+        <span class="spacer"></span>
+        <button class="link" id="reset">Clear filters</button>
+        <button class="link" id="csv">Download CSV</button>
+      </div>
+      <div class="count" id="count"></div>
+      <div class="scroll">
+        <table class="data" id="tbl"><thead><tr>
+          <th data-k="symbol">Symbol</th><th data-k="fund_name">Fund</th><th data-k="lmm">Lead market maker</th>
+          <th data-k="asset_class">Asset class</th><th data-k="source_class">Exchange label</th><th data-k="exchange">Exchange</th></tr></thead><tbody></tbody></table>
+      </div>
+    </section>
+
+    <section aria-labelledby="ch">
+      <h2 id="ch">Changes since last update</h2>
+      <p class="hint">New, dropped and reassigned funds compared with the previous snapshot.</p>
+      <div id="changes"></div>
+    </section>
+  </div>
+  <button class="link theme" id="theme">Switch theme</button>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const state = {data:null, ex:new Set(), ac:"", lmm:"", q:"", sort:{k:"symbol",dir:1}, limit:500};
+const LIMIT = 500;
+
+async function load(){
+  for (const url of ["data/lmm_latest.json","../data/lmm_latest.json"]) {
+    try { const r = await fetch(url + "?t=" + Date.now()); if (r.ok) return r.json(); } catch(e){}
+  }
+  throw new Error("Could not load data/lmm_latest.json. If you opened this file directly, serve the project folder instead: python -m http.server, then open /dashboard/.");
+}
+
+function filtered(skip){
+  const q = state.q.trim().toLowerCase();
+  return state.data.records.filter(r =>
+    (skip==="ex" || !state.ex.size || state.ex.has(r.exchange)) &&
+    (skip==="ac" || !state.ac || r.asset_class===state.ac) &&
+    (skip==="lmm" || !state.lmm || r.lmm===state.lmm) &&
+    (!q || r.symbol.toLowerCase().includes(q) || r.fund_name.toLowerCase().includes(q)));
+}
+
+function renderHealth(){
+  const d = state.data, el = $("#health"); el.innerHTML = "";
+  let anyStale = false;
+  Object.values(d.sources).forEach(s=>{
+    anyStale ||= !s.ok;
+    el.insertAdjacentHTML("beforeend",
+      `<span class="pill ${s.ok?"":"stale"}"><span class="dot"></span>${esc(s.label)} <small>${s.ok?"updated "+esc(s.as_of):(s.as_of?"stale, last good "+esc(s.as_of):"no data yet")}</small></span>`);
+  });
+  const b = $("#banner"); b.innerHTML = "";
+  if (d.demo) b.innerHTML = `<div class="banner">This is demo data, not real assignments. Run <code>python lmm_pipeline.py</code> to load real data.</div>`;
+  else if (anyStale) {
+    const errs = Object.values(d.sources).filter(s=>!s.ok).map(s=>`${esc(s.label)}: ${esc(s.error)}`).join("<br>");
+    b.innerHTML = `<div class="banner">Some sources failed on the last run, so those rows show their last good data.<br>${errs}</div>`;
+  }
+  $("#asof").textContent = `${d.records.length.toLocaleString()} assignments · generated ${new Date(d.generated_at).toLocaleString()}`;
+}
+
+function renderMatrix(){
+  const base = state.data.records.filter(r => (!state.ex.size || state.ex.has(r.exchange)));
+  const acs = [...new Set(base.map(r=>r.asset_class))].sort();
+  const lmms = [...new Set(base.map(r=>r.lmm))].sort();
+  const cnt = {}; let max = 1;
+  base.forEach(r=>{ const k=r.lmm+"|"+r.asset_class; (cnt[k] ||= new Set()).add(r.exchange+":"+r.symbol); });
+  Object.values(cnt).forEach(s=>max=Math.max(max,s.size));
+  const rowTot = l => new Set(base.filter(r=>r.lmm===l).map(r=>r.exchange+":"+r.symbol)).size;
+  lmms.sort((a,b)=>rowTot(b)-rowTot(a));
+  let h = `<thead><tr><th></th>${acs.map(a=>`<th scope="col">${esc(a)}</th>`).join("")}<th class="tot">Total</th></tr></thead><tbody>`;
+  for (const l of lmms){
+    h += `<tr><th scope="row">${esc(l)}</th>`;
+    for (const a of acs){
+      const n = cnt[l+"|"+a]?.size || 0, on = state.lmm===l && state.ac===a;
+      const bg = n ? `background:rgba(var(--heat-rgb),${(0.15+0.75*n/max).toFixed(2)})` : "";
+      h += `<td><button class="cell ${n?"":"zero"} ${on?"on":""}" style="${bg}" data-l="${esc(l)}" data-a="${esc(a)}" ${n?"":"disabled"} aria-label="${esc(l)}, ${esc(a)}: ${n} funds">${n||""}</button></td>`;
+    }
+    h += `<td class="tot">${rowTot(l)}</td></tr>`;
+  }
+  $("#matrix").innerHTML = h + "</tbody>";
+}
+
+function renderControls(){
+  const exs = [...new Set(state.data.records.map(r=>r.exchange))].sort();
+  $("#exChips").innerHTML = exs.map(e=>`<button class="chip" aria-pressed="${state.ex.has(e)}" data-e="${esc(e)}">${esc(e)}</button>`).join(" ");
+  const opt = (arr, cur, all) => `<option value="">${all}</option>` + arr.map(v=>`<option ${v===cur?"selected":""}>${esc(v)}</option>`).join("");
+  $("#acSel").innerHTML = opt([...new Set(state.data.records.map(r=>r.asset_class))].sort(), state.ac, "All asset classes");
+  $("#lmmSel").innerHTML = opt([...new Set(state.data.records.map(r=>r.lmm))].sort(), state.lmm, "All lead market makers");
+}
+
+function renderTable(){
+  const {k,dir} = state.sort;
+  const rows = filtered().sort((a,b)=> (a[k]||"").localeCompare(b[k]||"")*dir || a.symbol.localeCompare(b.symbol));
+  const shown = rows.slice(0, state.limit);
+  $("#count").innerHTML = `${rows.length.toLocaleString()} assignments` + (rows.length>shown.length
+    ? `, showing the first ${shown.length.toLocaleString()} <button class="link" id="more">Show all</button>` : "");
+  $("#tbl tbody").innerHTML = shown.length ? shown.map(r=>
+    `<tr><td class="sym">${esc(r.symbol)}</td><td>${esc(r.fund_name)}</td><td>${esc(r.lmm)}</td><td>${esc(r.asset_class)}</td><td><span class="tag">${esc(r.source_class)}</span></td><td><span class="tag">${esc(r.exchange)}</span></td></tr>`).join("")
+    : `<tr><td colspan="6" class="empty">No assignments match these filters. Clear a filter to see more.</td></tr>`;
+}
+
+function renderChanges(){
+  const c = state.data.changes || [];
+  $("#changes").innerHTML = c.length ? c.map(x=>{
+    const what = x.type==="changed" ? `${esc(x.frm)} to ${esc(x.to)}` : x.type==="added" ? `now covered by ${esc(x.to)}` : `was covered by ${esc(x.frm)}`;
+    return `<div class="chg"><span class="kind ${x.type}">${x.type}</span><b>${esc(x.symbol)}</b> on ${esc(x.exchange)}<br><span class="tag">${esc(x.fund_name)} · ${what}</span></div>`;
+  }).join("") : `<div class="empty">No changes yet. Changes appear after the second daily run.</div>`;
+}
+
+function renderAll(){ state.limit = LIMIT; renderControls(); renderMatrix(); renderTable(); }
+
+function toCSV(){
+  const rows = filtered(), cols = ["as_of","exchange","symbol","fund_name","lmm","asset_class"];
+  const q = v => `"${String(v??"").replace(/"/g,'""')}"`;
+  const blob = new Blob([[cols.join(",")].concat(rows.map(r=>cols.map(c=>q(r[c])).join(","))).join("\n")],{type:"text/csv"});
+  const a = Object.assign(document.createElement("a"),{href:URL.createObjectURL(blob),download:"lmm_assignments.csv"}); a.click();
+}
+
+document.addEventListener("click", e=>{
+  const t = e.target.closest("button,th"); if(!t) return;
+  if (t.dataset.e){ state.ex.has(t.dataset.e) ? state.ex.delete(t.dataset.e) : state.ex.add(t.dataset.e); renderAll(); }
+  else if (t.classList.contains("cell") && !t.disabled){
+    const same = state.lmm===t.dataset.l && state.ac===t.dataset.a;
+    state.lmm = same ? "" : t.dataset.l; state.ac = same ? "" : t.dataset.a; renderAll();
+  }
+  else if (t.dataset.k){ state.sort = {k:t.dataset.k, dir: state.sort.k===t.dataset.k ? -state.sort.dir : 1}; renderTable(); }
+  else if (t.id==="reset"){ Object.assign(state,{ex:new Set(),ac:"",lmm:"",q:""}); $("#q").value=""; renderAll(); }
+  else if (t.id==="csv") toCSV();
+  else if (t.id==="more"){ state.limit = Infinity; renderTable(); }
+  else if (t.id==="theme"){
+    const dark = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()==="#0f161b";
+    document.documentElement.dataset.theme = dark ? "light" : "dark";
+  }
+});
+$("#acSel").onchange = e => { state.ac = e.target.value; renderAll(); };
+$("#lmmSel").onchange = e => { state.lmm = e.target.value; renderAll(); };
+$("#q").oninput = e => { state.q = e.target.value; state.limit = LIMIT; renderTable(); };
+
+load().then(d=>{ state.data = d; renderHealth(); renderChanges(); renderAll(); })
+      .catch(err=>{ $("#asof").textContent = ""; $("#banner").innerHTML = `<div class="banner">${esc(err.message)}</div>`; });
+</script>
+</body>
+</html>

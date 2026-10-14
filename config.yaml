@@ -1,0 +1,67 @@
+# ---------------------------------------------------------------------------
+# Lead market maker (LMM) tracker configuration
+#
+# mode: url   -> download every run
+# mode: inbox -> read the newest file in inbox/<key>/ (use if a site blocks
+#                automated downloads, or for exchanges with no public file)
+#
+# Asset class resolution, first hit wins:
+#   1. reference/asset_class_overrides.csv      (your manual fixes)
+#   2. class_map  applied to the exchange's own class/bucket label
+#   3. type_map   applied to the exchange's product-type column
+#   4. keyword match on the fund name
+#   5. "Unclassified"
+# The exchange's raw label is always kept in `source_class`.
+# ---------------------------------------------------------------------------
+sources:
+  cboe:
+    label: Cboe BZX
+    mode: url
+    url: "https://www.cboe.com/us/equities/listings/trade_on_cboe/lmm/securities/csv/"
+    format: csv
+    columns: { symbol: Symbol, fund_name: "LMM Security Name", lmm: LMM, source_class: "Asset Class" }
+    role_label: Lead Market Maker
+    class_map:
+      - { match: "^(US|International) Equity", to: Equity }
+      - { match: "^Fixed Income",              to: Fixed Income }
+      - { match: "^Outcome",                   to: Outcome-Based }
+      # "Other" is deliberately unmapped -> falls through to fund-name keywords
+
+  nasdaq:
+    label: Nasdaq
+    mode: url
+    url: "https://www.nasdaqtrader.com/trader.aspx?id=etf_definitions"
+    format: html_table
+    columns:
+      symbol: Symbol
+      fund_name: Fund
+      lmm: "DLP Firm"
+      role: "DLP Type"
+      source_class: "Bucket Label"     # NB: Nasdaq truncates this to 32 characters
+      type: Type
+    # Nasdaq's lead-market-maker equivalent is the Designated Liquidity Provider.
+    # Add "Market Quality Supporter" here to include the secondary firms too.
+    include_roles: ["Designated Liquidity Provider"]
+    class_map:
+      - { match: "^Equity",                        to: Equity }
+      - { match: "^Fixed Income",                  to: Fixed Income }
+      - { match: "^Currency - Crypto",             to: Digital Assets }
+      - { match: "^Currency",                      to: Currency }
+      - { match: "^Commodit",                      to: Commodity }
+      - { match: "^Real Estate",                   to: Real Estate }
+      - { match: "^Multi Asset",                   to: Multi-Asset }
+      # "Derivatives Strategy ..." is a strategy, not an asset class -> fall through
+    type_map:
+      - { match: "Single Stock", to: Equity }
+
+  nyse_arca:
+    label: NYSE Arca
+    mode: inbox              # no public file confirmed yet; drop the LMM list in inbox/nyse_arca/
+    url: ""
+    format: xlsx
+    columns: { symbol: Symbol, fund_name: Name, lmm: "Lead Market Maker" }
+    role_label: Lead Market Maker
+
+http:
+  user_agent: "Mozilla/5.0 (compatible; lmm-tracker/1.0; +you@example.com)"
+  timeout_seconds: 60
