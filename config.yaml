@@ -35,12 +35,19 @@ sources:
     type_map:
       - { match: "Single Stock", to: Equity }
 
-  # NYSE Arca is switched off until we have a data source for it.
-  # nyse_arca:
-  #   label: NYSE Arca
-  #   mode: inbox
-  #   format: xlsx
-  #   columns: { symbol: Symbol, fund_name: Name, lmm: "Lead Market Maker" }
+  nyse_arca:
+    label: NYSE Arca
+    mode: url
+    url: "https://www.nyse.com/publicdocs/nyse/markets/nyse-arca/NYSE_Arca_Equities_LMM_Current.xlsx"
+    format: xlsx
+    header_row: auto            # skips any title rows above the real header
+    inbox_fallback: true        # if nyse.com blocks the download, use the newest file in inbox/nyse_arca/
+    columns:
+      symbol:    [Symbol, Ticker, "Root Symbol", "Symbol Root"]
+      fund_name: [Name, "Security Name", "Issue Name", "Company Name", Description]
+      lmm:       ["Lead Market Maker", LMM, "LMM Firm", "LMM Name", Firm]
+    optional_columns: [fund_name]
+    role_label: Lead Market Maker
 
 http:
   user_agent: "Mozilla/5.0 (compatible; lmm-tracker/1.0; +you@example.com)"
