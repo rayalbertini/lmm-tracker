@@ -7369,6 +7369,7 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-15,Nasdaq,ACBE,Pacer Metaurus Enhanced Core Income Autocallable ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Unclassified,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,ACBH,Pacer Metaurus High Income Autocallable ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Unclassified,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,ACEP,ARS Core Equity Portfolio ETF,GTS,"GTS Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
+2026-10-15,Nasdaq,ACHP,Global X Asia Semiconductor ETF,Old Mission Capital,Old Mission Capital LLC,Designated Liquidity Provider,Unclassified,ERROR - Not Assigned
 2026-10-15,Nasdaq,ACQQ,ProShares Nasdaq-100 Autocallable Income ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Equity,Derivatives Strategy - Other tha
 2026-10-15,Nasdaq,ACRT,ProShares Russell 2000 Autocallable Income ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,ACSP,ProShares S&P 500 Autocallable Income ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
@@ -7627,6 +7628,7 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-15,Nasdaq,DECO,State Street Galaxy Digital Asset Ecosystem ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Digital Assets,Derivatives Strategy - Other tha
 2026-10-15,Nasdaq,DEMZ,Democratic Large Cap Core ETF,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,DFGP,Dimensional Global Core Plus Fixed Income ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - International
+2026-10-15,Nasdaq,DFGV,DFA Intermediate Government Fixed Income Portfolio: ETF Class Shares,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,
 2026-10-15,Nasdaq,DFGX,Dimensional International Core Fixed Income ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - International
 2026-10-15,Nasdaq,DGCB,Dimensional Global Credit ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - International
 2026-10-15,Nasdaq,DGLO,First Trust RBA Deglobalization ETF,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
@@ -8038,6 +8040,7 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-15,Nasdaq,MFLX,First Trust Flexible Municipal High Income ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Fixed Income,Derivatives Strategy - Other tha
 2026-10-15,Nasdaq,MFMO,Motley Fool Momentum Factor ETF,GTS,"GTS Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,MFVL,Motley Fool Value Factor ETF,GTS,"GTS Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
+2026-10-15,Nasdaq,MGOL,Leverage Shares MANGOS ETF,IMC,"IMC-Chicago, LLC",Designated Liquidity Provider,Unclassified,ERROR - Not Assigned
 2026-10-15,Nasdaq,MILN,Global X Millennial Consumer ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,MKAM,MKAM ETF,GTS,"GTS Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,MNVT,Moonvest ETF,GTS,"GTS Securities, LLC",Designated Liquidity Provider,Equity,Equity - Blended Development
@@ -8168,6 +8171,7 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-15,Nasdaq,PDDL,GraniteShares 2x Long PDD Daily ETF,GTS,"GTS Securities, LLC",Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,PDP,Invesco Dorsey Wright Momentum ETF,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,PEPS,Parametric Equity Plus ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
+2026-10-15,Nasdaq,PEPT,REX Peptide ETF,Old Mission Capital,Old Mission Capital LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,PEY,Invesco High Yield Equity Dividend Achievers ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,PEZ,Invesco Dorsey Wright Consumer Cyclicals Momentum ETF,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,PFDE,Pathfinder Disciplined US Equity ETF,Wolverine,"Wolverine Trading, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
@@ -8316,6 +8320,7 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-15,Nasdaq,ROCY,JPMorgan Equity Premium Yield ETF,Old Mission Capital,Old Mission Capital LLC,Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,ROE,Astoria US Equal Weight Quality Kings ETF,GTS,"GTS Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,RTH,VanEck Retail ETF,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
+2026-10-15,Nasdaq,RTHY,F/m Long-Term Treasury Inflation-Protected Security (TIPS) ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,ERROR - Not Assigned
 2026-10-15,Nasdaq,RTXG,Leverage Shares 2X Long RTX Daily ETF,IMC,"IMC-Chicago, LLC",Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,RTYY,GraniteShares YieldBoost RIOT ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,RUNN,Running Oak Efficient Growth ETF,Citadel Securities,Citadel Securities LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
@@ -8642,3 +8647,9 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-15,Nasdaq,ZTOP,F/m High Yield 100 ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - North America or
 2026-10-15,Nasdaq,ZTRE,F/m 3-Year Investment Grade Corporate Bond ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - International
 2026-10-15,Nasdaq,ZTWO,F/m 2-Year Investment Grade Corporate Bond ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - International
+2026-10-15,TXSE,CTAG,Calamos Timpani Active SMID Growth ETF,RBC Capital Markets,"RBC Capital Markets, LLC",Lead Market Maker,Equity,
+2026-10-15,TXSE,OILT,Texas Capital Texas Oil Index ETF,Virtu,Virtu Americas LLC,Lead Market Maker,Commodity,
+2026-10-15,TXSE,PWRX,Westwood Salient Enhanced Power & Infrastructure ETF,Susquehanna,"Susquehanna Securities, LLC",Lead Market Maker,Unclassified,
+2026-10-15,TXSE,TXS,Texas Capital Texas Equity Index ETF,Virtu,Virtu Americas LLC,Lead Market Maker,Equity,
+2026-10-15,TXSE,WSLS,WisdomTree Efficient Long/Short U.S. SmallCap Equity Fund,Citadel Securities,Citadel Securities LLC,Lead Market Maker,Equity,
+2026-10-15,TXSE,WTAL,WisdomTree Global Alpha Fund,Citadel Securities,Citadel Securities LLC,Lead Market Maker,Unclassified,

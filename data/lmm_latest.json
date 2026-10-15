@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-15T12:51:54+00:00",
+ "generated_at": "2026-10-15T13:21:04+00:00",
  "sources": {
   "cboe": {
    "label": "Cboe BZX",
@@ -12,7 +12,7 @@
   "nasdaq": {
    "label": "Nasdaq",
    "ok": true,
-   "rows": 1290,
+   "rows": 1295,
    "as_of": "2026-10-15",
    "source": "https://www.nasdaqtrader.com/trader.aspx?id=etf_definitions",
    "error": null
@@ -23,6 +23,14 @@
    "rows": 2741,
    "as_of": "2026-10-15",
    "source": "https://www.nyse.com/publicdocs/nyse/markets/nyse-arca/NYSE_Arca_Equities_LMM_Current.xlsx",
+   "error": null
+  },
+  "txse": {
+   "label": "TXSE",
+   "ok": true,
+   "rows": 6,
+   "as_of": "2026-10-15",
+   "source": "https://www.txse.com/api/etp-products",
    "error": null
   }
  },
@@ -50,12 +58,47 @@
    "fund_name": "Global X Small Modular Reactor ETF"
   },
   {
+   "type": "added",
+   "to": "Old Mission Capital",
+   "exchange": "Nasdaq",
+   "symbol": "ACHP",
+   "fund_name": "Global X Asia Semiconductor ETF"
+  },
+  {
+   "type": "added",
+   "to": "Jane Street",
+   "exchange": "Nasdaq",
+   "symbol": "DFGV",
+   "fund_name": "DFA Intermediate Government Fixed Income Portfolio: ETF Class Shares"
+  },
+  {
    "type": "changed",
    "frm": "SG Americas Securities",
    "to": "SG Americas",
    "exchange": "Nasdaq",
    "symbol": "EQRR",
    "fund_name": "ProShares Equities for Rising Rates ETF"
+  },
+  {
+   "type": "added",
+   "to": "IMC",
+   "exchange": "Nasdaq",
+   "symbol": "MGOL",
+   "fund_name": "Leverage Shares MANGOS ETF"
+  },
+  {
+   "type": "added",
+   "to": "Old Mission Capital",
+   "exchange": "Nasdaq",
+   "symbol": "PEPT",
+   "fund_name": "REX Peptide ETF"
+  },
+  {
+   "type": "added",
+   "to": "Jane Street",
+   "exchange": "Nasdaq",
+   "symbol": "RTHY",
+   "fund_name": "F/m Long-Term Treasury Inflation-Protected Security (TIPS) ETF"
   }
  ],
  "records": [
@@ -48682,6 +48725,17 @@
   {
    "as_of": "2026-10-15",
    "exchange": "Nasdaq",
+   "symbol": "ACHP",
+   "fund_name": "Global X Asia Semiconductor ETF",
+   "lmm": "Old Mission Capital",
+   "lmm_raw": "Old Mission Capital LLC",
+   "role": "Designated Liquidity Provider",
+   "asset_class": "Unclassified",
+   "source_class": "ERROR - Not Assigned"
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "Nasdaq",
    "symbol": "ACQQ",
    "fund_name": "ProShares Nasdaq-100 Autocallable Income ETF",
    "lmm": "Susquehanna",
@@ -51516,6 +51570,17 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Fixed Income",
    "source_class": "Fixed Income - International"
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "Nasdaq",
+   "symbol": "DFGV",
+   "fund_name": "DFA Intermediate Government Fixed Income Portfolio: ETF Class Shares",
+   "lmm": "Jane Street",
+   "lmm_raw": "Jane Street Capital, LLC",
+   "role": "Designated Liquidity Provider",
+   "asset_class": "Fixed Income",
+   "source_class": ""
   },
   {
    "as_of": "2026-10-15",
@@ -56041,6 +56106,17 @@
   {
    "as_of": "2026-10-15",
    "exchange": "Nasdaq",
+   "symbol": "MGOL",
+   "fund_name": "Leverage Shares MANGOS ETF",
+   "lmm": "IMC",
+   "lmm_raw": "IMC-Chicago, LLC",
+   "role": "Designated Liquidity Provider",
+   "asset_class": "Unclassified",
+   "source_class": "ERROR - Not Assigned"
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "Nasdaq",
    "symbol": "MILN",
    "fund_name": "Global X Millennial Consumer ETF",
    "lmm": "Susquehanna",
@@ -57467,6 +57543,17 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Equity",
    "source_class": "Derivatives Strategy - Developed"
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "Nasdaq",
+   "symbol": "PEPT",
+   "fund_name": "REX Peptide ETF",
+   "lmm": "Old Mission Capital",
+   "lmm_raw": "Old Mission Capital LLC",
+   "role": "Designated Liquidity Provider",
+   "asset_class": "Equity",
+   "source_class": "Equity - Developed Markets"
   },
   {
    "as_of": "2026-10-15",
@@ -59095,6 +59182,17 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Equity",
    "source_class": "Equity - Developed Markets"
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "Nasdaq",
+   "symbol": "RTHY",
+   "fund_name": "F/m Long-Term Treasury Inflation-Protected Security (TIPS) ETF",
+   "lmm": "Jane Street",
+   "lmm_raw": "Jane Street Capital, LLC",
+   "role": "Designated Liquidity Provider",
+   "asset_class": "Fixed Income",
+   "source_class": "ERROR - Not Assigned"
   },
   {
    "as_of": "2026-10-15",
@@ -62681,6 +62779,72 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Fixed Income",
    "source_class": "Fixed Income - International"
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "TXSE",
+   "symbol": "CTAG",
+   "fund_name": "Calamos Timpani Active SMID Growth ETF",
+   "lmm": "RBC Capital Markets",
+   "lmm_raw": "RBC Capital Markets, LLC",
+   "role": "Lead Market Maker",
+   "asset_class": "Equity",
+   "source_class": ""
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "TXSE",
+   "symbol": "OILT",
+   "fund_name": "Texas Capital Texas Oil Index ETF",
+   "lmm": "Virtu",
+   "lmm_raw": "Virtu Americas LLC",
+   "role": "Lead Market Maker",
+   "asset_class": "Commodity",
+   "source_class": ""
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "TXSE",
+   "symbol": "PWRX",
+   "fund_name": "Westwood Salient Enhanced Power & Infrastructure ETF",
+   "lmm": "Susquehanna",
+   "lmm_raw": "Susquehanna Securities, LLC",
+   "role": "Lead Market Maker",
+   "asset_class": "Unclassified",
+   "source_class": ""
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "TXSE",
+   "symbol": "TXS",
+   "fund_name": "Texas Capital Texas Equity Index ETF",
+   "lmm": "Virtu",
+   "lmm_raw": "Virtu Americas LLC",
+   "role": "Lead Market Maker",
+   "asset_class": "Equity",
+   "source_class": ""
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "TXSE",
+   "symbol": "WSLS",
+   "fund_name": "WisdomTree Efficient Long/Short U.S. SmallCap Equity Fund",
+   "lmm": "Citadel Securities",
+   "lmm_raw": "Citadel Securities LLC",
+   "role": "Lead Market Maker",
+   "asset_class": "Equity",
+   "source_class": ""
+  },
+  {
+   "as_of": "2026-10-15",
+   "exchange": "TXSE",
+   "symbol": "WTAL",
+   "fund_name": "WisdomTree Global Alpha Fund",
+   "lmm": "Citadel Securities",
+   "lmm_raw": "Citadel Securities LLC",
+   "role": "Lead Market Maker",
+   "asset_class": "Unclassified",
+   "source_class": ""
   }
  ]
 }
