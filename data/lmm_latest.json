@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-15T12:48:14+00:00",
+ "generated_at": "2026-10-15T12:51:54+00:00",
  "sources": {
   "cboe": {
    "label": "Cboe BZX",
@@ -35,11 +35,27 @@
    "fund_name": "Tuttle Capital Thematic ETF"
   },
   {
+   "type": "changed",
+   "frm": "SG Americas Securities",
+   "to": "SG Americas",
+   "exchange": "Cboe BZX",
+   "symbol": "PAWZ",
+   "fund_name": "ProShares Pet Care ETF"
+  },
+  {
    "type": "added",
    "to": "Susquehanna",
    "exchange": "Cboe BZX",
    "symbol": "SMRZ",
    "fund_name": "Global X Small Modular Reactor ETF"
+  },
+  {
+   "type": "changed",
+   "frm": "SG Americas Securities",
+   "to": "SG Americas",
+   "exchange": "Nasdaq",
+   "symbol": "EQRR",
+   "fund_name": "ProShares Equities for Rising Rates ETF"
   }
  ],
  "records": [
@@ -14029,7 +14045,7 @@
    "exchange": "Cboe BZX",
    "symbol": "PAWZ",
    "fund_name": "ProShares Pet Care ETF",
-   "lmm": "SG Americas Securities",
+   "lmm": "SG Americas",
    "lmm_raw": "SG Americas Securities, LLC",
    "role": "Lead Market Maker",
    "asset_class": "Unclassified",
@@ -52188,7 +52204,7 @@
    "exchange": "Nasdaq",
    "symbol": "EQRR",
    "fund_name": "ProShares Equities for Rising Rates ETF",
-   "lmm": "SG Americas Securities",
+   "lmm": "SG Americas",
    "lmm_raw": "SG Americas Securities, LLC",
    "role": "Designated Liquidity Provider",
    "asset_class": "Equity",

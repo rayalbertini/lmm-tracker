@@ -4009,7 +4009,7 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-15,Cboe BZX,PATX,Tradr 2X Long PATH Daily ETF,Old Mission Capital,"Old Mission Capital, LLC",Lead Market Maker,Unclassified,Single Stock
 2026-10-15,Cboe BZX,PAUG,Innovator U.S. Equity Power Buffer ETF - August,Wolverine,"Wolverine Trading, LLC",Lead Market Maker,Outcome-Based,Outcome-Based
 2026-10-15,Cboe BZX,PAVE,Global X U.S. Infrastructure Development ETF,Susquehanna,"Susquehanna Securities, LLC",Lead Market Maker,Equity,US Equity
-2026-10-15,Cboe BZX,PAWZ,ProShares Pet Care ETF,SG Americas Securities,"SG Americas Securities, LLC",Lead Market Maker,Unclassified,Other
+2026-10-15,Cboe BZX,PAWZ,ProShares Pet Care ETF,SG Americas,"SG Americas Securities, LLC",Lead Market Maker,Unclassified,Other
 2026-10-15,Cboe BZX,PAYH,TrueShares S&P Autocallable High Income ETF,Citadel Securities,Citadel Securities LLC,Lead Market Maker,Equity,Other
 2026-10-15,Cboe BZX,PAYM,TrueShares S&P Autocallable Defensive Income ETF,Citadel Securities,Citadel Securities LLC,Lead Market Maker,Equity,Other
 2026-10-15,Cboe BZX,PAYR,Federated Hermes Enhanced Income ETF,GTS,GTS Securities LLC,Lead Market Maker,Unclassified,Other
@@ -7689,7 +7689,7 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-15,Nasdaq,ENHU,iShares Enhanced Large Cap Core Active ETF,Goldman Sachs,Goldman Sachs & Co. LLC,Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,ENZL,iShares MSCI New Zealand ETF,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Equity,Derivatives Strategy - Developed
 2026-10-15,Nasdaq,EQQQ,ProShares Ultra QQQ Equal Weight,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Unclassified,Derivatives Strategy - Developed
-2026-10-15,Nasdaq,EQRR,ProShares Equities for Rising Rates ETF,SG Americas Securities,"SG Americas Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
+2026-10-15,Nasdaq,EQRR,ProShares Equities for Rising Rates ETF,SG Americas,"SG Americas Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,ERET,iShares Environmentally Aware Real Estate ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,ESGD,iShares ESG Aware MSCI EAFE ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-15,Nasdaq,ESGE,iShares ESG Aware MSCI EM ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Equity,Equity - Emerging and Frontier M
