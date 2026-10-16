@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-16T13:12:29+00:00",
+ "generated_at": "2026-10-16T13:23:29+00:00",
  "sources": {
   "cboe": {
    "label": "Cboe BZX",
@@ -149,25 +149,10 @@
   }
  ],
  "tidal_unmatched": [
-  "BTYB",
-  "DIVY",
-  "DKNX",
-  "DRNL",
-  "FXED",
   "HF",
-  "HFEQ",
-  "HFGM",
-  "HFMF",
-  "HFND",
-  "HOOZ",
-  "LMNX",
-  "MPL",
-  "OKLS",
-  "PRVT",
-  "RAYJ",
-  "RKTL",
-  "WLTG",
-  "ZETX"
+  "VGTX",
+  "WBEM",
+  "WBIE"
  ],
  "records": [
   {
@@ -17112,7 +17097,7 @@
    "role": "Lead Market Maker",
    "asset_class": "Equity",
    "source_class": "US Equity",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -17124,7 +17109,7 @@
    "role": "Lead Market Maker",
    "asset_class": "Equity",
    "source_class": "US Equity",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -19848,7 +19833,7 @@
    "role": "Lead Market Maker",
    "asset_class": "Equity",
    "source_class": "US Equity",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -22596,7 +22581,7 @@
    "role": "Lead Market Maker",
    "asset_class": "Unclassified",
    "source_class": "",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -22932,7 +22917,7 @@
    "role": "Lead Market Maker",
    "asset_class": "Unclassified",
    "source_class": "",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -23064,7 +23049,7 @@
    "role": "Lead Market Maker",
    "asset_class": "Unclassified",
    "source_class": "",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -56519,7 +56504,7 @@
    "lmm_raw": "Jane Street Capital, LLC",
    "role": "Designated Liquidity Provider",
    "asset_class": "Fixed Income",
-   "source_class": "",
+   "source_class": "ERROR - Not Assigned",
    "is_tidal": false
   },
   {
@@ -61764,7 +61749,7 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Unclassified",
    "source_class": "Derivatives Strategy - Developed",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -62844,7 +62829,7 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Equity",
    "source_class": "Equity - Blended Development",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -62928,7 +62913,7 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Equity",
    "source_class": "Equity - Developed Markets",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -62940,7 +62925,7 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Equity",
    "source_class": "Equity - Developed Markets",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -64140,7 +64125,7 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Outcome-Based",
    "source_class": "Derivatives Strategy - Developed",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",
@@ -67812,7 +67797,7 @@
    "role": "Designated Liquidity Provider",
    "asset_class": "Outcome-Based",
    "source_class": "Derivatives Strategy - Developed",
-   "is_tidal": false
+   "is_tidal": true
   },
   {
    "as_of": "2026-10-16",

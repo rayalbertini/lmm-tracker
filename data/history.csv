@@ -13348,7 +13348,7 @@ as_of,exchange,symbol,fund_name,lmm,lmm_raw,role,asset_class,source_class
 2026-10-16,Nasdaq,DECO,State Street Galaxy Digital Asset Ecosystem ETF,Susquehanna,"Susquehanna Securities, LLC",Designated Liquidity Provider,Digital Assets,Derivatives Strategy - Other tha
 2026-10-16,Nasdaq,DEMZ,Democratic Large Cap Core ETF,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
 2026-10-16,Nasdaq,DFGP,Dimensional Global Core Plus Fixed Income ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - International
-2026-10-16,Nasdaq,DFGV,DFA Intermediate Government Fixed Income Portfolio: ETF Class Shares,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,
+2026-10-16,Nasdaq,DFGV,DFA Intermediate Government Fixed Income Portfolio: ETF Class Shares,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,ERROR - Not Assigned
 2026-10-16,Nasdaq,DFGX,Dimensional International Core Fixed Income ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - International
 2026-10-16,Nasdaq,DGCB,Dimensional Global Credit ETF,Jane Street,"Jane Street Capital, LLC",Designated Liquidity Provider,Fixed Income,Fixed Income - International
 2026-10-16,Nasdaq,DGLO,First Trust RBA Deglobalization ETF,Virtu,Virtu Americas LLC,Designated Liquidity Provider,Equity,Equity - Developed Markets
