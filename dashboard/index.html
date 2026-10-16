@@ -96,7 +96,7 @@ input[type=search]{min-width:220px}
 
   <section aria-labelledby="mx">
     <h2 id="mx">Who covers what</h2>
-    <p class="hint">Funds covered by each lead market maker, split by asset class. Select a cell to filter the list below. The purple columns show how many of each firm's funds are Tidal funds (<code>reference/tidal_funds.csv</code>).</p>
+    <p class="hint">Funds covered by each lead market maker, split by asset class. Select a cell to filter the list below. The purple columns show each firm's Tidal funds, as a % of its own funds and as a % of all Tidal funds (<code>reference/tidal_funds.csv</code>).</p>
     <div class="matrix-scroll"><table class="matrix" id="matrix"></table></div>
   </section>
 
@@ -183,7 +183,7 @@ function renderMatrix(){
   const hasTidal = state.data.records.some(r=>r.is_tidal);
   const keys = (l, tidalOnly) => new Set(base.filter(r=>r.lmm===l && (!tidalOnly || r.is_tidal)).map(r=>r.exchange+":"+r.symbol));
   const allTidal = new Set(base.filter(r=>r.is_tidal).map(r=>r.exchange+":"+r.symbol)).size;
-  let h = `<thead><tr><th></th>${acs.map(a=>`<th scope="col">${esc(a)}</th>`).join("")}<th class="tot">Total</th>${hasTidal?`<th class="tidal">Tidal</th><th class="tidal">% Tidal</th>`:""}</tr></thead><tbody>`;
+  let h = `<thead><tr><th></th>${acs.map(a=>`<th scope="col">${esc(a)}</th>`).join("")}<th class="tot">Total</th>${hasTidal?`<th class="tidal">Tidal</th><th class="tidal" title="Tidal funds as a share of all funds this firm covers">% Tidal</th><th class="tidal" title="This firm's Tidal funds as a share of all Tidal funds">% of all Tidal</th>`:""}</tr></thead><tbody>`;
   for (const l of lmms){
     h += `<tr><th scope="row">${esc(l)}</th>`;
     for (const a of acs){
@@ -194,8 +194,9 @@ function renderMatrix(){
     h += `<td class="tot">${rowTot(l)}</td>`;
     if (hasTidal){
       const tot = rowTot(l), t = keys(l,true).size, pct = tot ? 100*t/tot : 0;
-      const share = allTidal ? (100*t/allTidal).toFixed(1) : "0.0";
-      h += `<td class="tidal">${t}</td><td class="tidal" title="${t} of ${tot} funds. ${share}% of all Tidal funds in view."><b>${pct.toFixed(1)}%</b><span class="pbar"><i style="width:${pct.toFixed(0)}%"></i></span></td>`;
+      const share = allTidal ? 100*t/allTidal : 0;
+      h += `<td class="tidal">${t}</td><td class="tidal" title="${t} of ${tot} funds"><b>${pct.toFixed(1)}%</b><span class="pbar"><i style="width:${pct.toFixed(0)}%"></i></span></td>`
+         + `<td class="tidal" title="${t} of ${allTidal} Tidal funds"><b>${share.toFixed(1)}%</b><span class="pbar"><i style="width:${share.toFixed(0)}%"></i></span></td>`;
     }
     h += `</tr>`;
   }
