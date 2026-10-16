@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-16T14:55:44+00:00",
+ "generated_at": "2026-10-16T22:55:59+00:00",
  "sources": {
   "cboe": {
    "label": "Cboe BZX",
@@ -149,9 +149,16 @@
   }
  ],
  "tidal_unmatched": [
+  "AIBN",
+  "EMAG",
+  "ICOM",
+  "MTGG",
+  "THRU",
   "VGTX",
   "WBEM",
-  "WBIE"
+  "WBIE",
+  "WINC",
+  "YASX"
  ],
  "records": [
   {
