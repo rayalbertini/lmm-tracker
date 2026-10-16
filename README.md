@@ -33,6 +33,14 @@ Review "Unclassified" in the dashboard and add fixes to the overrides file; they
 reference/firm_aliases.csv merges variants ("Jane Street" / "Jane Street Capital, LLC") so the
 grid combines exchanges. New firm with an odd name? Add one line.
 
+## Tidal overlay
+List Tidal fund tickers (one per row, header `symbol`) in reference/tidal_funds.csv. Every record gets
+`is_tidal` (ticker match, case-insensitive). The dashboard then shows a TIDAL badge on each fund, a
+"Tidal funds only" filter, and Tidal / % Tidal columns in the LMM grid (Tidal funds / all funds the firm
+covers, respecting the exchange filter; hover for the firm's share of all Tidal funds).
+After editing the list, run `python lmm_pipeline.py --retag` to re-tag without re-pulling (the daily run
+does it automatically). Tickers in the list that appear on no exchange file are flagged in a banner.
+
 ## Daily refresh
 Push to GitHub, enable Pages (Source: GitHub Actions). daily.yml runs weekdays, appends to
 data/history.csv and republishes the dashboard.

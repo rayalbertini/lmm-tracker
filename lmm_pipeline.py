@@ -9,7 +9,7 @@ Daily lead-market-maker snapshot for Cboe, Nasdaq and NYSE Arca.
 
 Outputs (under data/):
   history.csv       one row per (as_of, exchange, symbol, lmm), append-only
-  lmm_latest.json   what the dashboard reads (records, changes, source health)
+  lmm_latest.json   what the dashboard reads (records, changes, source health; records carry is_tidal)
 """
 from __future__ import annotations
 import argparse, glob, io, json, os, re, sys
@@ -63,6 +63,37 @@ def load_overrides() -> dict[str, str]:
         return {}
     df = pd.read_csv(p, dtype=str).dropna()
     return dict(zip(df["symbol"].str.upper().str.strip(), df["asset_class"].str.strip()))
+
+
+# ---------------------------------------------------------- Tidal overlay
+def load_tidal() -> set[str]:
+    """Tickers of Tidal funds (reference/tidal_funds.csv, one `symbol` column). Applied at output time, so
+    editing the list re-tags all history without a re-pull."""
+    p = ROOT / "reference" / "tidal_funds.csv"
+    if not p.exists():
+        return set()
+    df = pd.read_csv(p, dtype=str).dropna(subset=["symbol"])
+    return {s.strip().upper() for s in df["symbol"] if s.strip()}
+
+
+def tag_tidal(records: list[dict], tidal: set[str]) -> list[dict]:
+    for r in records:
+        r["is_tidal"] = r["symbol"].strip().upper() in tidal
+    return records
+
+
+def retag() -> int:
+    """Re-apply the Tidal list to data/lmm_latest.json without fetching anything."""
+    payload = json.loads(LATEST.read_text())
+    tidal = load_tidal()
+    tag_tidal(payload["records"], tidal)
+    seen = {r["symbol"].strip().upper() for r in payload["records"]}
+    payload["tidal_unmatched"] = sorted(tidal - seen)
+    LATEST.write_text(json.dumps(payload, indent=1))
+    n = sum(r["is_tidal"] for r in payload["records"])
+    print(f"tagged {n} assignments across {len(tidal) - len(payload['tidal_unmatched'])}/{len(tidal)} Tidal tickers; "
+          f"unmatched: {payload['tidal_unmatched'] or 'none'}")
+    return 0
 
 
 # ---------------------------------------------------------- firm names
@@ -256,11 +287,14 @@ def run(only, inspect, cfg_path) -> int:
     latest = pd.concat(parts) if parts else pd.DataFrame(columns=STD_COLS)
     # a failed source keeps its previously reported changes; fresh runs replace them
     kept = [c for c in prev_latest.get("changes", []) if c["exchange"] not in {s["label"] for s in status.values() if s["ok"]}]
+    tidal = load_tidal()
+    records = tag_tidal(latest[STD_COLS].to_dict("records"), tidal)
     payload = dict(
         generated_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
         sources={**prev_latest.get("sources", {}), **status},
         changes=kept + changes,
-        records=latest[STD_COLS].to_dict("records"),
+        tidal_unmatched=sorted(tidal - {r["symbol"] for r in records}),  # list entries no exchange file contains
+        records=records,
     )
     LATEST.write_text(json.dumps(payload, indent=1))
     return 1 if any(not s["ok"] for s in status.values()) else 0
@@ -298,8 +332,11 @@ def demo() -> None:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--only"); ap.add_argument("--inspect"); ap.add_argument("--demo", action="store_true")
+    ap.add_argument("--retag", action="store_true", help="re-apply reference/tidal_funds.csv to data/lmm_latest.json, no fetch")
     ap.add_argument("--config", default=str(ROOT / "config.yaml"))
     a = ap.parse_args()
     if a.demo:
         demo(); sys.exit(0)
+    if a.retag:
+        sys.exit(retag())
     sys.exit(run(a.only, a.inspect, a.config))
